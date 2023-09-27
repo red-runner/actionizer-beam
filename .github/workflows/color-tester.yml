@@ -1,0 +1,15 @@
+name: color-tester
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  main-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bash tester
+        run: |
+          echo -e "\e[93mHello World\e[0m"
+
