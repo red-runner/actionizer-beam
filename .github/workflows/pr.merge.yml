@@ -23,12 +23,12 @@ jobs:
         git remote set-url origin https://github.com/red-runner/actionizer-beam.git
         git checkout main
         git pull origin main
+
         # Make your changes here
         line1="This is line 1 to be added."
         line2="This is line 2 to be added."
-
-        # Append the lines to the README.md file
         echo -e "$line1\n$line2" >> README.md
-        git add .
+
+        git add README.md
         git commit -m "Commit message"
-        git push https://${{ secrets.PAT }}@github.com/red-runner/actionizer-beam.git HEAD:main
+        git push origin main
