@@ -1,4 +1,4 @@
-name: Push to Main
+name: Push to main
 
 on:
   push:
@@ -6,24 +6,29 @@ on:
       - main
 
 jobs:
-  push_to_master:
+  push_to_main:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Push to Master
+    - name: Push to Main
       env:
         PAT: ${{ secrets.PAT }}
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git fetch --prune --unshallow
-        git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
-        git checkout master
-        git pull origin master
+        git remote set-url origin https://github.com/red-runner/actionizer-beam.git
+        git checkout main
+        git pull origin main
         # Make your changes here
+        line1="This is line 1 to be added."
+        line2="This is line 2 to be added."
+
+        # Append the lines to the README.md file
+        echo -e "$line1\n$line2" >> README.md
         git add .
         git commit -m "Commit message"
-        git push https://${{ secrets.PAT }}@github.com/USERNAME/REPOSITORY.git HEAD:master
+        git push https://${{ secrets.PAT }}@github.com/red-runner/actionizer-beam.git HEAD:main
